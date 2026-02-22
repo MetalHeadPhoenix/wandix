@@ -1,0 +1,9 @@
+Package: Wandix-deb
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Ashkan Habibi
+Description: Wandix — a helper CLI for managing playground projects
+ A simple CLI helper that creates directories and templates under the user's
+ home directory.

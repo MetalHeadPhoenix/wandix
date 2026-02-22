@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# This file exists because each user should initialize 
+# individually
+
+CONFIG_HOME="/usr/share/wandix"
+PLAYGROUND_HOME="$HOME/playground"
+FUNCTION_FILE="$CONFIG_HOME/wandix.sh"
+
+
+# Copy 
+if [ ! -d "$PLAYGROUND_HOME" ]; then
+    mkdir $PLAYGROUND_HOME
+fi
+
+# Add loader to .bashrc only if the function file exists
+if [ -f "$FUNCTION_FILE" ]; then
+    if ! grep -Fq "source \"$FUNCTION_FILE\"" "$HOME/.bashrc"; then
+        printf '\n# Load wandix function\nif [ -f "%s" ]; then\n    source "%s"\nfi\n' "$FUNCTION_FILE" "$FUNCTION_FILE" >> "$HOME/.bashrc"
+    fi
+else
+    printf "Warning: %s not found; skipping .bashrc modification.\n" "$FUNCTION_FILE" >&2
+fi
